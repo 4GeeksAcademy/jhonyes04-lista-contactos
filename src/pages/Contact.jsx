@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useGlobalReducer from '../../hooks/useGlobalReducer';
-import { ContactCard } from '../../components/ContactCard';
+import useGlobalReducer from '../hooks/useGlobalReducer';
+import { ContactCard } from '../components/ContactCard';
 
-import * as api from '../../api/api';
-import './Contact.css';
+import * as api from '../api/api';
 
 export const Contact = () => {
     const { state, dispatch } = useGlobalReducer();
@@ -39,7 +38,7 @@ export const Contact = () => {
     }, []);
 
     return (
-        <div className="container my-5">
+        <div className="container my-5" style={{ minWidth: '400px' }}>
             <div className="card">
                 <div className="card-header">
                     <div className="row">
@@ -57,7 +56,7 @@ export const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card-body min-vh-100">
+                <div className="card-body">
                     <div className="d-flex flex-column gap-1">
                         {state.contacts.map((contact) => (
                             <ContactCard contact={contact} key={contact.id} />

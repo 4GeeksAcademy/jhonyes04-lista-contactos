@@ -4,7 +4,7 @@ import {
     Route,
 } from 'react-router-dom';
 import { Layout } from './pages/Layout';
-import { Contact } from './pages/Contact/Contact';
+import { Contact } from './pages/Contact';
 import { AddContact } from './pages/AddContact';
 
 export const router = createBrowserRouter(
