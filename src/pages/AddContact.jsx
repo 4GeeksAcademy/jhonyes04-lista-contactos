@@ -77,7 +77,7 @@ export const AddContact = () => {
                     </span>,
                     {
                         position: 'top-center',
-                        autoClose: 1000,
+                        autoClose: 2000,
                         closeOnClick: false,
                     },
                 );

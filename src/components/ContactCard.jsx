@@ -9,9 +9,9 @@ export const ContactCard = ({ contact }) => {
     const { dispatch } = useGlobalReducer();
     const [mostrarModal, setMostrarModal] = useState(false);
 
-    const handleClickDelete = async (id) => {
+    const handleClickDelete = async (contact) => {
         try {
-            const contactoEliminado = await api.deleteContact(id);
+            const contactoEliminado = await api.deleteContact(contact.id);
 
             if (contactoEliminado) {
                 dispatch({
@@ -21,11 +21,17 @@ export const ContactCard = ({ contact }) => {
 
                 setMostrarModal(false);
 
-                toast.success(<span>Contacto eliminiado correctamente</span>, {
-                    position: 'top-center',
-                    autoClose: 1000,
-                    closeOnClick: false,
-                });
+                toast.success(
+                    <span>
+                        Contacto <strong>{contact.name}</strong> eliminiado
+                        correctamente
+                    </span>,
+                    {
+                        position: 'top-center',
+                        autoClose: 2000,
+                        closeOnClick: false,
+                    },
+                );
             }
         } catch (error) {
             console.error('Error al eliminar contacto:', error);
@@ -80,7 +86,7 @@ export const ContactCard = ({ contact }) => {
             <DeleteConfirmModal
                 abierto={mostrarModal}
                 nombreContacto={contact.name}
-                confirmar={() => handleClickDelete(contact.id)}
+                confirmar={() => handleClickDelete(contact)}
                 cancelar={() => setMostrarModal(false)}
             />
         </div>

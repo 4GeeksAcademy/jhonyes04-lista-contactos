@@ -3,7 +3,7 @@ import contactReducer, { initialContacts } from '../store';
 
 const ContactContext = createContext();
 
-export function ContactProvider({ children }) {
+export const ContactProvider = ({ children }) => {
     const [state, dispatch] = useReducer(contactReducer, initialContacts());
 
     return (
@@ -11,9 +11,11 @@ export function ContactProvider({ children }) {
             {children}
         </ContactContext.Provider>
     );
-}
+};
 
-export default function useGlobalReducer() {
+export const useGlobalReducer = () => {
     const { dispatch, state } = useContext(ContactContext);
     return { dispatch, state };
-}
+};
+
+export default useGlobalReducer;
