@@ -54,31 +54,27 @@ export const Contact = () => {
                                 </span>
                             )}
                         </div>
-                        {state.contacts.length > 0 && (
-                            <div className="col-12 col-md-4 align-self-center text-center text-md-end">
-                                <Link
-                                    to="/add-contact"
-                                    className="btn btn-success"
-                                >
-                                    <i className="fa-solid fa-plus-circle me-2"></i>
-                                    Añadir contacto
-                                </Link>
-                            </div>
-                        )}
+
+                        <div className="col-12 col-md-4 align-self-center text-center text-md-end">
+                            <Link to="/add-contact" className="btn btn-success">
+                                <i className="fa-solid fa-plus-circle me-2"></i>
+                                Añadir contacto
+                            </Link>
+                        </div>
                     </div>
                 </div>
                 <div className="card-body min-vh-100">
                     {state.contacts.length === 0 ? (
                         <div className="text-center fs-4 mt-5">
-                            Haga click
+                            Haga click en el botón
                             <Link
                                 to="/add-contact"
-                                className="btn btn-success mx-2 fs-4"
+                                className="btn btn-success mx-2"
                             >
                                 <i className="fa-solid fa-plus-circle me-2"></i>
-                                aquí
+                                Añadir contacto
                             </Link>
-                            para agregar el primer contacto
+                            para agregar contacto
                         </div>
                     ) : (
                         <div className="d-flex flex-column gap-1">

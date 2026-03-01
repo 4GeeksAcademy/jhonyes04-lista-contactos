@@ -22,13 +22,11 @@ export const DeleteConfirmModal = ({
                             onClick={cancelar}
                         ></button>
                     </div>
-                    <div className="modal-body d-flex justify-content-between align-items-center gap-2">
-                        <img
-                            className="rounded-circle img-fluid"
-                            src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${nombreContacto}`}
-                            alt={nombreContacto}
-                            width={100}
-                        />
+                    <div className="modal-body text-center">
+                        <i
+                            className="fa-solid fa-triangle-exclamation fa-5x mb-4"
+                            style={{ color: '#f78b48' }}
+                        ></i>
                         <div className="text-center">
                             <p>
                                 ¿Seguro que desea eliminar a{' '}
