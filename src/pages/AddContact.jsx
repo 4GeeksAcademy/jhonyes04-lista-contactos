@@ -7,7 +7,7 @@ import * as api from '../api/api';
 
 export const AddContact = () => {
     const { id } = useParams();
-    const { state, dispatch } = useGlobalReducer();
+    const { store, dispatch } = useGlobalReducer();
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
@@ -18,8 +18,8 @@ export const AddContact = () => {
     });
 
     useEffect(() => {
-        if (id && state.contacts.length > 0) {
-            const contactEdit = state.contacts.find(
+        if (id && store.contacts.length > 0) {
+            const contactEdit = store.contacts.find(
                 (contact) => String(contact.id) === String(id),
             );
 
@@ -32,7 +32,7 @@ export const AddContact = () => {
                 });
             }
         }
-    }, [id, state.contacts]);
+    }, [id, store.contacts]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

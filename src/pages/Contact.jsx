@@ -6,7 +6,7 @@ import { ContactCard } from '../components/ContactCard';
 import * as api from '../api/api';
 
 export const Contact = () => {
-    const { state, dispatch } = useGlobalReducer();
+    const { store, dispatch } = useGlobalReducer();
 
     const obtenerContactos = async () => {
         try {
@@ -44,13 +44,13 @@ export const Contact = () => {
                     <div className="row">
                         <div className="col-12 col-md-8 d-flex justify-content-center justify-content-md-start align-items-center gap-2">
                             <h1>
-                                {state.contacts.length > 0
+                                {store.contacts.length > 0
                                     ? 'Contactos en agenda'
                                     : 'Lista de contactos vacía'}
                             </h1>
-                            {state.contacts.length > 0 && (
+                            {store.contacts.length > 0 && (
                                 <span className="badge bg-dark fs-4 rounded-3">
-                                    {state.contacts.length}
+                                    {store.contacts.length}
                                 </span>
                             )}
                         </div>
@@ -64,7 +64,7 @@ export const Contact = () => {
                     </div>
                 </div>
                 <div className="card-body min-vh-100">
-                    {state.contacts.length === 0 ? (
+                    {store.contacts.length === 0 ? (
                         <div className="text-center fs-4 mt-5">
                             Haga click en el botón
                             <Link
@@ -78,7 +78,7 @@ export const Contact = () => {
                         </div>
                     ) : (
                         <div className="d-flex flex-column gap-1">
-                            {state.contacts.map((contact) => (
+                            {store.contacts.map((contact) => (
                                 <ContactCard
                                     contact={contact}
                                     key={contact.id}

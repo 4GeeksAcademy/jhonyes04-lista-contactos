@@ -4,32 +4,32 @@ export const initialContacts = () => {
     };
 };
 
-export default function contactReducer(state, action = {}) {
+export default function contactReducer(store, action = {}) {
     switch (action.type) {
         case 'GET_CONTACTS':
             return {
-                ...state,
+                ...store,
                 contacts: action.payload,
             };
 
         case 'ADD_CONTACT':
             return {
-                ...state,
-                contacts: [...state.contacts, action.payload],
+                ...store,
+                contacts: [...store.contacts, action.payload],
             };
 
         case 'UPDATE_CONTACT':
             return {
-                ...state,
-                contacts: state.contacts.map((contact) =>
+                ...store,
+                contacts: store.contacts.map((contact) =>
                     contact.id === action.payload.id ? action.payload : contact,
                 ),
             };
 
         case 'DELETE_CONTACT':
             return {
-                ...state,
-                contacts: state.contacts.filter(
+                ...store,
+                contacts: store.contacts.filter(
                     (contact) => contact.id !== action.payload,
                 ),
             };
