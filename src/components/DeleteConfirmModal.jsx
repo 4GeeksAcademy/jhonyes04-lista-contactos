@@ -23,10 +23,7 @@ export const DeleteConfirmModal = ({
                         ></button>
                     </div>
                     <div className="modal-body text-center">
-                        <i
-                            className="fa-solid fa-triangle-exclamation fa-5x mb-4"
-                            style={{ color: '#f78b48' }}
-                        ></i>
+                        <i className="fa-solid fa-triangle-exclamation fa-5x text-warning mb-4"></i>
                         <div className="text-center">
                             <p>
                                 ¿Seguro que desea eliminar a{' '}

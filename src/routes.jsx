@@ -10,7 +10,7 @@ import { Error404 } from './pages/Error404';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>}>
+        <Route path="/" element={<Layout />} errorElement={<Error404 />}>
             <Route path="/" element={<Contact />} />
             <Route path="/add-contact" element={<AddContact />} />
             <Route path="/edit-contact/:id" element={<AddContact />} />
