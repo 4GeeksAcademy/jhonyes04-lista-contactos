@@ -6,7 +6,7 @@ import {
 import { Layout } from './pages/Layout';
 import { Contact } from './pages/Contact';
 import { AddContact } from './pages/AddContact';
-import { ErrorComponent } from './components/ErrorComponent';
+import { Error404 } from './pages/Error404';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -14,7 +14,7 @@ export const router = createBrowserRouter(
             <Route path="/" element={<Contact />} />
             <Route path="/add-contact" element={<AddContact />} />
             <Route path="/edit-contact/:id" element={<AddContact />} />
-            <Route path="*" element={<ErrorComponent />} />
+            <Route path="*" element={<Error404 />} />
         </Route>,
     ),
 );

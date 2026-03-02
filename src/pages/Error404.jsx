@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'; // O 'next/link' si usas Next.js
 
-export const ErrorComponent = () => {
+export const Error404 = () => {
     return (
         <div className="container text-center mt-5">
             <h1 className="display-1 fw-bold text-danger">404</h1>
