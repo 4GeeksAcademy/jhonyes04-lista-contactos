@@ -30,7 +30,7 @@ export const postAgenda = async () => {
     }
 };
 
-export const getContacts = async () => {
+export const getContacts = async (dispatch) => {
     try {
         const response = await fetch(API_CONTACTS);
 
@@ -38,13 +38,18 @@ export const getContacts = async () => {
 
         const data = await response.json();
 
+        dispatch({
+            type: 'GET_CONTACTS',
+            payload: data.contacts,
+        });
+
         return data.contacts;
     } catch (error) {
         console.error('Error al obtener contactos:', error);
     }
 };
 
-export const postContact = async (contact) => {
+export const postContact = async (contact, dispatch) => {
     try {
         const response = await fetch(API_CONTACTS, {
             method: 'POST',
@@ -54,13 +59,20 @@ export const postContact = async (contact) => {
 
         if (!response.ok) throw new Error('Error al agregar contacto');
 
-        return await response.json();
+        const data = await response.json();
+
+        dispatch({
+            type: 'ADD_CONTACT',
+            payload: data,
+        });
+
+        return data;
     } catch (error) {
         console.error('Error al agregar contacto:', error);
     }
 };
 
-export const putContact = async (id, contact) => {
+export const putContact = async (id, contact, dispatch) => {
     try {
         const response = await fetch(API_CONTACTS + '/' + id, {
             method: 'PUT',
@@ -69,6 +81,10 @@ export const putContact = async (id, contact) => {
         });
 
         if (!response.ok) throw new Error('Error al actualizar contacto');
+        dispatch({
+            type: 'UPDATE_CONTACT',
+            payload: contact,
+        });
 
         return await response.json();
     } catch (error) {
@@ -76,13 +92,18 @@ export const putContact = async (id, contact) => {
     }
 };
 
-export const deleteContact = async (id) => {
+export const deleteContact = async (id, dispatch) => {
     try {
         const response = await fetch(API_CONTACTS + '/' + id, {
             method: 'DELETE',
         });
 
         if (!response.ok) throw new Error('Error al eliminar contacto');
+
+        dispatch({
+            type: 'DELETE_CONTACT',
+            payload: id,
+        });
 
         return true;
     } catch (error) {

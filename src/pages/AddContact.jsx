@@ -47,43 +47,26 @@ export const AddContact = () => {
 
         let contactoGuardado = null;
 
-        try {
-            if (id) {
-                contactoGuardado = await api.putContact(id, inputs);
+        if (id) {
+            contactoGuardado = await api.putContact(id, inputs, dispatch);
+        } else {
+            contactoGuardado = await api.postContact(inputs, dispatch);
+        }
 
-                if (contactoGuardado)
-                    dispatch({
-                        type: 'UPDATE_CONTACT',
-                        payload: contactoGuardado,
-                    });
-            } else {
-                contactoGuardado = await api.postContact(inputs);
+        if (contactoGuardado) {
+            navigate('/');
 
-                if (contactoGuardado) {
-                    dispatch({
-                        type: 'ADD_CONTACT',
-                        payload: contactoGuardado,
-                    });
-                }
-            }
-
-            if (contactoGuardado) {
-                navigate('/');
-
-                toast.success(
-                    <span>
-                        Contacto <strong>{contactoGuardado.name}</strong>{' '}
-                        {id ? 'actualizado' : 'creado'} correctamente
-                    </span>,
-                    {
-                        position: 'top-center',
-                        autoClose: 2000,
-                        closeOnClick: false,
-                    },
-                );
-            }
-        } catch (error) {
-            console.error('Error al guardar nuevo contacto:', error);
+            toast.success(
+                <span>
+                    Contacto <strong>{contactoGuardado.name}</strong>{' '}
+                    {id ? 'actualizado' : 'creado'} correctamente
+                </span>,
+                {
+                    position: 'top-center',
+                    autoClose: 2000,
+                    closeOnClick: false,
+                },
+            );
         }
     };
 

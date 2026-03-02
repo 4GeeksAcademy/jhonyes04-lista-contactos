@@ -8,19 +8,6 @@ import * as api from '../api/api';
 export const Contact = () => {
     const { store, dispatch } = useGlobalReducer();
 
-    const obtenerContactos = async () => {
-        try {
-            const contactos = await api.getContacts();
-
-            dispatch({
-                type: 'GET_CONTACTS',
-                payload: contactos,
-            });
-        } catch (error) {
-            console.error('Error cargando contactos');
-        }
-    };
-
     useEffect(() => {
         const comprobarAgenda = async (nombreAgenda) => {
             try {
@@ -28,7 +15,7 @@ export const Contact = () => {
 
                 if (!existe) await api.postAgenda(nombreAgenda);
 
-                obtenerContactos();
+                await api.getContacts(dispatch);
             } catch (error) {
                 console.error('Error al comprobar agenda:', error);
             }

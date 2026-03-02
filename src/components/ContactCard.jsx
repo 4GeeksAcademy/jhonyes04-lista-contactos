@@ -11,14 +11,12 @@ export const ContactCard = ({ contact }) => {
 
     const handleClickDelete = async (contact) => {
         try {
-            const contactoEliminado = await api.deleteContact(contact.id);
+            const contactoEliminado = await api.deleteContact(
+                contact.id,
+                dispatch,
+            );
 
             if (contactoEliminado) {
-                dispatch({
-                    type: 'DELETE_CONTACT',
-                    payload: contact.id,
-                });
-
                 setMostrarModal(false);
 
                 toast.success(
