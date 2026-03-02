@@ -51,7 +51,9 @@ export const ContactCard = ({ contact }) => {
                     />
 
                     <div className="d-flex flex-column text-muted mx-auto ms-sm-5">
-                        <p className="m-0 fw-bold fst-italic">{contact.name}</p>
+                        <p className="m-0 fw-bold fst-italic text-black">
+                            {contact.name}
+                        </p>
                         <p className="m-0">
                             <i className="fa-solid fa-location-dot me-2"></i>
                             {contact.address}
