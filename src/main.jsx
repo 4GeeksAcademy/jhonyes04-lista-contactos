@@ -9,9 +9,7 @@ import './index.css';
 const Main = () => {
     return (
         <React.StrictMode>
-            {/* Provide global state to all components */}
             <ContactProvider>
-                {/* Set up routing for the application */}
                 <RouterProvider router={router}></RouterProvider>
             </ContactProvider>
         </React.StrictMode>
