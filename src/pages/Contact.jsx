@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useGlobalReducer from '../hooks/useGlobalReducer';
 import { ContactCard } from '../components/ContactCard';
@@ -7,8 +7,11 @@ import * as api from '../api/api';
 
 export const Contact = () => {
     const { store, dispatch } = useGlobalReducer();
+    const [cargando, setCargando] = useState(false);
 
     useEffect(() => {
+        setCargando(true);
+
         const comprobarAgenda = async (nombreAgenda) => {
             try {
                 const existe = await api.existeAgenda(nombreAgenda);
@@ -22,6 +25,7 @@ export const Contact = () => {
         };
 
         comprobarAgenda(import.meta.env.VITE_AGENDA);
+        setCargando(false);
     }, []);
 
     return (
@@ -31,11 +35,11 @@ export const Contact = () => {
                     <div className="row">
                         <div className="col-12 col-md-8 d-flex justify-content-center justify-content-md-start align-items-center gap-2">
                             <h1>
-                                {store.contacts.length > 0
-                                    ? 'Contactos en agenda'
-                                    : 'Lista de contactos vacía'}
+                                {cargando
+                                    ? 'Cargando lista de contactos'
+                                    : 'Contactos en agenda'}
                             </h1>
-                            {store.contacts.length > 0 && (
+                            {!cargando && (
                                 <span className="badge bg-dark fs-4 rounded-3">
                                     {store.contacts.length}
                                 </span>
@@ -51,19 +55,7 @@ export const Contact = () => {
                     </div>
                 </div>
                 <div className="card-body min-vh-100">
-                    {store.contacts.length === 0 ? (
-                        <div className="text-center fs-4 mt-5">
-                            Haga click en el botón
-                            <Link
-                                to="/add-contact"
-                                className="btn btn-success mx-2"
-                            >
-                                <i className="fa-solid fa-plus-circle me-2"></i>
-                                Añadir contacto
-                            </Link>
-                            para agregar contacto
-                        </div>
-                    ) : (
+                    {store.contacts.length > 0 && (
                         <div className="d-flex flex-column gap-1">
                             {store.contacts.map((contact) => (
                                 <ContactCard
