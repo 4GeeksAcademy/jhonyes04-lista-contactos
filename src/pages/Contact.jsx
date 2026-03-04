@@ -8,6 +8,7 @@ import * as api from '../api/api';
 export const Contact = () => {
     const { store, dispatch } = useGlobalReducer();
     const [cargando, setCargando] = useState(false);
+    const { contacts } = store;
 
     useEffect(() => {
         setCargando(true);
@@ -41,7 +42,7 @@ export const Contact = () => {
                             </h1>
                             {!cargando && (
                                 <span className="badge bg-dark fs-4 rounded-3">
-                                    {store.contacts.length}
+                                    {contacts.length}
                                 </span>
                             )}
                         </div>
@@ -55,9 +56,9 @@ export const Contact = () => {
                     </div>
                 </div>
                 <div className="card-body min-vh-100">
-                    {store.contacts.length > 0 && (
+                    {contacts.length > 0 && (
                         <div className="d-flex flex-column gap-1">
-                            {store.contacts.map((contact) => (
+                            {contacts.map((contact) => (
                                 <ContactCard
                                     contact={contact}
                                     key={contact.id}
